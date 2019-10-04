@@ -26,18 +26,24 @@ class LoginForm extends Form {
   setup() {
     return {
       fields: [{
+        variant: "filled",
+        margin: 'normal',
+        label: 'E-mail address',
         name: 'email',
         placeholder: 'E-mail',
         rules: 'required|string',
         value: '',
       },
-        {
-          name: 'password',
-          type: 'password',
-          placeholder: 'Password',
-          rules: 'required|string',
-          value: '',
-        }],
+      {
+        variant: "filled",
+        margin: 'normal',
+        label: 'Password',
+        name: 'password',
+        type: 'password',
+        placeholder: 'Password',
+        rules: 'required|string',
+        value: '',
+      }],
     };
   }
 
@@ -51,8 +57,8 @@ class LoginForm extends Form {
   }
 }
 
-@inject('user')
 @observer
+@inject('user')
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -65,10 +71,10 @@ class Login extends Component {
       <form>
         <Paper>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <TextField {...this.form.$('email').bind()} />
+          <TextField variant="filled" {...this.form.$('email').bind()} />
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <TextField {...this.form.$('password').bind()} />
-          <Button type="button" onClick={this.form.onSubmit}>Login</Button>
+          <TextField variant="filled" {...this.form.$('password').bind()} />
+          <Button type="button" variant="contained" onClick={this.form.onSubmit}>Login</Button>
         </Paper>
       </form>
     );
