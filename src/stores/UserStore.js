@@ -1,7 +1,7 @@
 import { observable, action, computed } from 'mobx';
 
 export default class UserStore {
-  @observable user = null;
+  @observable profile = null;
 
   @observable loading = true;
 
@@ -15,7 +15,7 @@ export default class UserStore {
   }
 
   @computed get isLoggedIn() {
-    return this.user != null;
+    return this.profile != null;
   }
 
   @action login(credentials) {
@@ -49,7 +49,7 @@ export default class UserStore {
         type: 'logoutViews',
       },
     }).then(() => {
-      this.user = null;
+      this.profile = null;
     })
     // .catch((error) => {
     //
@@ -62,7 +62,7 @@ export default class UserStore {
   @action getUser() {
     this.loading = true;
     this.httpClient.get('users/me').then((response) => {
-      this.user = response.data.data;
+      this.profile = response.data.data;
     })
       .catch((error) => {
         if (error.response.status === 401) {

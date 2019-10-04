@@ -5,6 +5,9 @@ import './index.css';
 import './components/App.css';
 
 import { Provider } from 'mobx-react';
+import { createBrowserHistory } from 'history';
+import { RouterStore, syncHistoryWithStore } from 'mobx-react-router';
+
 import axios from 'axios';
 
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
@@ -36,16 +39,22 @@ httpClient.interceptors.request.use((httpConfig) => {
   return httpConfig;
 });
 
+const browserHistory = createBrowserHistory();
+const routingStore = new RouterStore();
+
 const stores = {
+  routing: routingStore,
   user: new UserStore(httpClient),
 };
+
+const history = syncHistoryWithStore(browserHistory, routingStore);
 
 // eslint-disable-next-line no-undef
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
     {/* eslint-disable-next-line react/jsx-props-no-spreading */}
     <Provider {...stores}>
-      <App />
+      <App history={history} />
     </Provider>
   </MuiThemeProvider>,
   // eslint-disable-next-line no-undef

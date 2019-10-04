@@ -7,6 +7,7 @@ import validatorjs from 'validatorjs';
 import {
   Paper, Button, TextField, Typography,
 } from '@material-ui/core';
+import { Redirect } from 'react-router';
 
 class LoginForm extends Form {
   constructor(doLogin) {
@@ -64,6 +65,10 @@ class Login extends Component {
 
   render() {
     const { user } = this.props;
+
+    if (user.isLoggedIn) {
+      return <Redirect to="/profile" />;
+    }
 
     return (
       <form>
