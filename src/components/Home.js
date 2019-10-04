@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import {Button, Paper, Typography} from "@material-ui/core";
 
-@observer
 @inject('user')
+@observer
 class Home extends Component {
   render() {
     const { user } = this.props

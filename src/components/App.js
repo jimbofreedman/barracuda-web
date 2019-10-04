@@ -5,7 +5,7 @@ import { inject, observer } from 'mobx-react';
 
 import LoginScreen from '../components/Login';
 import HomeScreen from '../components/Home';
-
+import LoadingModal from '../components/LoadingModal';
 
 @inject('user')
 @observer
@@ -19,7 +19,7 @@ class App extends Component {
     const { user } = this.props;
 
     if (user.loading) {
-      return <div>Loading</div>;
+      return <LoadingModal />;
     }
 
     if (!user.isLoggedIn) {
@@ -30,4 +30,4 @@ class App extends Component {
   }
 }
 
-export default observer(App);
+export default App;

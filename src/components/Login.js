@@ -5,7 +5,7 @@ import { Form } from 'mobx-react-form';
 import dvr from 'mobx-react-form/lib/validators/DVR';
 import validatorjs from 'validatorjs';
 import {
-  Paper, Button, TextField,
+  Paper, Button, TextField, Typography
 } from '@material-ui/core';
 
 class LoginForm extends Form {
@@ -26,8 +26,6 @@ class LoginForm extends Form {
   setup() {
     return {
       fields: [{
-        variant: "filled",
-        margin: 'normal',
         label: 'E-mail address',
         name: 'email',
         placeholder: 'E-mail',
@@ -35,8 +33,6 @@ class LoginForm extends Form {
         value: '',
       },
       {
-        variant: "filled",
-        margin: 'normal',
         label: 'Password',
         name: 'password',
         type: 'password',
@@ -57,8 +53,8 @@ class LoginForm extends Form {
   }
 }
 
-@observer
 @inject('user')
+@observer
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -67,13 +63,16 @@ class Login extends Component {
   }
 
   render() {
+    const { user } = this.props;
+    console.log(user);
     return (
       <form>
         <Paper>
+          {user.loginFailed ? <Typography>Invalid username/password</Typography> : null}
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <TextField variant="filled" {...this.form.$('email').bind()} />
+          <TextField {...this.form.$('email').bind()} />
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <TextField variant="filled" {...this.form.$('password').bind()} />
+          <TextField {...this.form.$('password').bind()} />
           <Button type="button" variant="contained" onClick={this.form.onSubmit}>Login</Button>
         </Paper>
       </form>
