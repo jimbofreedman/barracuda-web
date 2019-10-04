@@ -5,7 +5,7 @@ import { Form } from 'mobx-react-form';
 import dvr from 'mobx-react-form/lib/validators/DVR';
 import validatorjs from 'validatorjs';
 import {
-  Paper, Button, TextField, Typography
+  Paper, Button, TextField, Typography,
 } from '@material-ui/core';
 
 class LoginForm extends Form {

@@ -1,5 +1,5 @@
-import {CircularProgress} from "@material-ui/core";
-import React from "react";
+import { CircularProgress } from '@material-ui/core';
+import React from 'react';
 
 const LoadingModal = () => (
   <div style={{
@@ -13,9 +13,10 @@ const LoadingModal = () => (
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  }}>
-    <CircularProgress/>
+  }}
+  >
+    <CircularProgress />
   </div>
-)
+);
 
-export default LoadingModal
+export default LoadingModal;

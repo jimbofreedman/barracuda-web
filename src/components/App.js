@@ -3,9 +3,9 @@ import './App.css';
 
 import { inject, observer } from 'mobx-react';
 
-import LoginScreen from '../components/Login';
-import HomeScreen from '../components/Home';
-import LoadingModal from '../components/LoadingModal';
+import LoginScreen from './Login';
+import HomeScreen from './Home';
+import LoadingModal from './LoadingModal';
 
 @inject('user')
 @observer

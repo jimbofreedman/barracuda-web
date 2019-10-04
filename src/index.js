@@ -4,7 +4,6 @@ import './index.css';
 
 import './components/App.css';
 
-import { autorun } from 'mobx';
 import { Provider } from 'mobx-react';
 import axios from 'axios';
 
@@ -16,7 +15,7 @@ import theme from './theme';
 
 import config from './config';
 
-import UserStore from "./stores/UserStore";
+import UserStore from './stores/UserStore';
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';

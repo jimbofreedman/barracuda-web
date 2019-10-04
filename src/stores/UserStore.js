@@ -4,6 +4,7 @@ export default class UserStore {
   @observable user = null;
 
   @observable loading = true;
+
   @observable loginFailed = false;
 
   constructor(httpClient) {
@@ -28,17 +29,17 @@ export default class UserStore {
     }).then(() => {
       this.getUser();
     })
-    .catch((error) => {
-      if (error.response.status === 400) {
+      .catch((error) => {
+        if (error.response.status === 400) {
         // bad username/password
-        this.loginFailed = true;
-      } else {
-        console.log("error", error)
-      }
-    })
-    .finally(() => {
-      this.loading = false;
-    })
+          this.loginFailed = true;
+        } else {
+          console.log('error', error);
+        }
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   @action logout() {
@@ -53,9 +54,9 @@ export default class UserStore {
     // .catch((error) => {
     //
     // });
-    .finally(() => {
+      .finally(() => {
         this.loading = false;
-      })
+      });
   }
 
   @action getUser() {
@@ -63,16 +64,16 @@ export default class UserStore {
     this.httpClient.get('users/me').then((response) => {
       this.user = response.data.data;
     })
-    .catch((error) => {
-      if (error.response.status === 401) {
+      .catch((error) => {
+        if (error.response.status === 401) {
         // not logged in
-        this.user = null
-      } else {
-        console.log("error", error)
-      }
-    })
-    .finally(() => {
-      this.loading = false;
-    });
+          this.user = null;
+        } else {
+          console.log('error', error);
+        }
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }
